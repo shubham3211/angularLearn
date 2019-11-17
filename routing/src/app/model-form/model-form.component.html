@@ -1,0 +1,84 @@
+<form [formGroup]="mf" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" [ngClass]="{'is-invalid': mf.controls.city.errors  && mf.controls.city.touched}" formControlName="city" class="form-control">
+    <div class="invalid-feedback" *ngIf="mf.controls.city.errors && mf.controls.city.errors.required">
+      The field should be required
+    </div>
+    <div class="invalid-feedback" *ngIf="mf.controls.city.errors && mf.controls.city.errors['value Greater Than 5']">
+      The value cannot be greater than 5
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="cityid">city id</label>
+    <input type="text" [ngClass]="{'is-invalid': mf.controls.cityId.errors && mf.controls.cityId.touched}" formControlName="cityId" class="form-control">
+  </div>
+  <div class="form-group" formGroupName="latLong">
+    <label for="lat">Latitude</label>
+    <input type="text" formControlName="lat" class="form-control">
+    <label for="long">Longitude</label>
+    <input type="text" formControlName="long" class="form-control">
+  </div>
+  <div class="form-group" formGroupName="zip">
+    <label for="zipno">Zip No</label>
+    <input type="text" [ngClass]="{'is-invalid': mf.controls.zip.controls.zipNo.errors}" formControlName="zipNo" class="form-control">
+    <div class="invalid-feedback" *ngIf="mf.controls.zip.controls.zipNo.errors && mf.controls.zip.controls.zipNo.errors['value less than 0']">
+      The value cannot be less tahn zero
+    </div>
+    <div class="invalid-feedback" *ngIf="mf.controls.zip.controls.zipNo.errors && mf.controls.zip.controls.zipNo.errors['maxlength']">
+      The value cannot be more than 3
+    </div>
+    <label for="country">Country</label>
+    <input type="text" name="country" id="country" class="form-control" formControlName="country">
+  </div>
+  <div class="form-group" formGroupName="box">
+    <label for="lat-left">Latitude left</label>
+    <input type="text" id="lat-left" formControlName="latLeft" class="form-control">
+    <label for="lat-right">Latitude Right</label>
+    <input type="text" id="lat-right" formControlName="latRight" class="form-control">
+    <label for="long-left">Longitude Left</label>
+    <input type="text" id="long-left" formControlName="longLeft" class="form-control">
+    <label for="long-right">Longitude Right</label>
+    <input type="text" id="long-right" formControlName="longRight" class="form-control">
+  </div>
+  <div class="form-group" formGroupName="cycle">
+    <label for="clat">Clat</label>
+    <input type="text" id="clat" formControlName="clat" class="form-control">
+    <label for="clong">Clong</label>
+    <input type="text" formControlName="clong" class="form-control">
+    <label for="count">Count</label>
+    <input type="text" id="count" formControlName="count" class="form-control">
+  </div>
+  <div class="form-group" *ngFor="let f of mf.controls.hobby.controls">
+    <input type="text" [formControl]=f class="form-control">
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<input type="text" list="dl">
+<datalist id="dl">
+  <option value="1">
+  <option value="2">
+  <option value="3">
+  <option value="4">
+  <option value="5">
+</datalist>
+<hr>
+{{ dt | date:'shortTime' }} <hr>
+{{ dt | date:'shortDate' }} <hr>
+{{ dt | date:'mediumDate' }} <hr>
+{{ dt | date:'mediumTime' }} <hr>
+{{ dt | date:'longTime' }} <hr>
+<!-- {{ dt | date:'longDate' }} <hr> -->
+
+{{ name | gender:'male' }}
+
+<h1 [ngStyle]="{color: num%2==0 ? 'red':'blue'}" [ngClass]="{'backBlue': num%2!=0}" appHighlight>Shubham</h1>
+
+<div [ngSwitch]="num">
+  <p *ngSwitchCase=1>1</p>
+  <p *ngSwitchCase=2>2</p>
+  <p *ngSwitchCase=3>3</p>
+  <p *ngSwitchCase=4>4</p>
+  <p *ngSwitchDefault>5</p>
+</div>

@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form #f=ngForm (ngSubmit)="onSubmit(f)">
+        <div class="form-grop">
+          <label for="city">City Name</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="city" name="city" 
+            #cityCtr=ngModel
+            ngModel
+            required
+            (keydown)="printChange($event)"
+            [ngClass]="{'is-invalid': (cityCtr.invalid && cityCtr.touched) || cityCtr.value=='Delhi'}">
+            <div class="invalid-feedback" *ngIf="cityCtr.value=='Delhi'">
+              The city name should not be delhi
+            </div>
+            <div class="invalid-feedback" *ngIf="cityCtr.errors && cityCtr.errors.required">
+              This field is required
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="cityid">City Id</label>
+          <input type="text" id="cityid" name="cityId" class="form-control" ngModel>
+        </div>
+        <div class="form-group" #latLong=ngModelGroup ngModelGroup="latLong">
+          <label for="lat">Latitude</label>
+          <input type="text" id="lat" name="lat" #lat class="form-control" ngModel>
+          <label for="long">Longitude</label>
+          <input type="text" name="long" class="form-control" ngModel>
+        </div>
+        <div *ngIf="lat.value!=5 && lat.value!=''">
+          The Value is not 5
+        </div>
+        <div class="form-group" ngModelGroup="zip">
+          <label for="zipNo">Zip Number</label>
+          <input type="text" id="zipNo" [ngClass]="{showRed: true}" name="zipNo" class="form-control" ngModel>
+          <label for="country">Country Code</label>
+          <input type="text" id="country" name="country" class="form-control" ngModel>
+        </div>
+        <div class="from-group" ngModelGroup="box">
+          <label for="lon-left">Longitude Left</label>
+          <input type="text" id="lon-left" class="form-control" name="lon-left" ngModel>
+          <label for="lon-right">Longitude Right</label>
+          <input type="text" class="form-control" name="lon-right" ngModel>
+          <label for="lat-left">Latitude Left</label>
+          <input type="text" class="form-control" name="lat-left" ngModel>
+          <label for="lat-right">Latitude Right</label>
+          <input type="text" name="lat-right" class="form-control" ngModel>
+        </div>
+        <div class="form-group" ngModelGroup="cycle">
+          <label for="clat">Circle Latitude</label>
+          <input type="text"  id="clat" name="clat" class="form-control" ngModel>
+          <label for="clong">Circle Longitude</label>
+          <input type="text" id="clong" name="clong" class="form-control" ngModel>
+          <label for="count">Count</label>
+          <input type="text" name="count" id="count" class="form-control" ngModel>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

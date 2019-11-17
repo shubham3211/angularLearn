@@ -1,0 +1,107 @@
+<form #f=ngForm (ngSubmit)="onSubmit(f)">
+  <div class="form-group" ngModelGroup="city" #cityCtrl="ngModelGroup">
+    <label for="city">Enter the city name</label>
+    <input 
+      type="text"
+      id="city"
+      #city name="city"
+      [ngClass]="{'is-valid': city.valid && city.touched, 'is-invalid': city.invalid && city.touched  || customValidation}" 
+      class="form-control" 
+      ngModel
+      (keydown)=printChange($event)
+      [(ngModel)]="cityName"
+      required>
+    <div class="invalid-feedback" *ngIf="(city.errors && city.errors.required) || customValidation">
+      The input is required
+    </div>
+  </div>
+  <div class="form-group" ngModelGroup="cityId" #cityId="ngModelGroup">
+    <label for="cityId">Enter the city Id</label>
+    <input type="text" id="cityId" name="cityId" class="form-control" ngModel>
+  </div>
+  <div class="form-row" ngModelGroup="lat-long" #latLongCtrl="ngModelGroup">
+    <div class="col-6">
+      <label for="lat">Enter Latitude</label>
+      <input 
+        type="text"
+        id="lat"
+        name="lat"
+        #lat="ngModel"
+        [ngClass]="{'is-valid': lat.valid&&lat.touched, 'is-invalid': !lat.valid && lat.touched}"
+        class="form-control"
+        ngModel 
+        required
+        minlength="2">
+        <div class="invalid-feedback" *ngIf="lat.errors && lat.errors.minlength">
+          Minimum length should be 2
+        </div>
+        <div class="invalid-feedback" *ngIf="lat.errors && lat.errors.required">
+          The Input Field is required
+        </div>
+    </div>
+    <div class="col-6">
+      <label for="long">Enter Longitude</label>
+      <input 
+        type="text"
+        for="long"
+        name="long"
+        #long="ngModel"
+        [ngClass]="{'is-valid': long.valid && long.touched , 'is-invalid': !long.valid && long.touched}"
+        class="form-control"
+        ngModel required
+        maxlength=3>
+        <div class="invalid-feedback" *ngIf="long.errors && long.errors.required">
+          The input filed is required
+        </div>
+        <div class="invalid-feedback" *ngIf="long.errors && long.errors.maxlength">
+          Maxlength is 3
+        </div>
+    </div>
+  </div>
+  <div class="form-row mt-2" ngModelGroup="zip" #zipCtrl="ngModelGroup">
+    <div class="col-6">
+      <label for="zip">Zip Code</label>
+      <input type="text" name="zip" class="form-control" ngModel>
+    </div>
+    <div class="col-6">
+      <label for="country">Country Code</label>
+      <input type="text" id="country" name="country" class="form-control" ngModel>
+    </div>
+  </div>
+  <div ngModelGroup="box" #boxCtrl="ngModelGroup">
+    <div class="form-row mt-2">
+      <div class="col-6">
+        <label for="lon-left">Lon Left</label>
+        <input type="text" id="lon-left" name="lon-left" class="form-control" ngModel>
+      </div>
+      <div class="col-6">
+        <label for="lon-right">Lon Right</label>
+        <input type="text" id="lon-right" name="lon-right" class="form-control" ngModel>
+      </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col-6">
+        <label for="lat-left">Lat Top</label>
+        <input type="text" id="lat-top" name="lat-top" class="form-control" ngModel>
+      </div>
+      <div class="col-6">
+        <label for="lat-right">Lat Bottom</label>
+        <input type="text" id="lat-bottom" name="lat-bottom" class="form-control" ngModel>
+      </div>
+    </div>
+  </div>
+  <div class="form-row mt-2" ngModelGroup="circle" #circleCtrl="ngModelGroup">
+    <div class="col-4">
+      <input type="text" placeholder="Latitude" name="clat" class="form-control" ngModel>
+    </div>
+    <div class="col-4">
+      <input type="text" placeholder="Longitude" name="clong" class="form-control" ngModel>
+    </div>
+    <div class="col-4">
+      <input type="text" placeholder="Cycle" name="cycle" class="form-control" ngModel>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">
+    Submit
+  </button>
+</form>

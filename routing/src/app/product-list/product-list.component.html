@@ -1,0 +1,18 @@
+<table class="table table-dark table-striped">
+  <thead>
+    <th>ProductId</th>
+    <th>Category</th>
+    <th>MainCategory</th>
+    <th>TaxTarifCode</th>
+    <th>SupplierName</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td><a [routerLink]="['/products', product.ProductId ]">{{product.ProductId}}</a></td>
+      <td>{{product.Category}}</td>
+      <td>{{product.MainCategory}}</td>
+      <td>{{product.TaxTarifCode}}</td>
+      <td>{{product.SupplierName}}</td>
+    </tr>
+  </tbody>
+</table>

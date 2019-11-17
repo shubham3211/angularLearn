@@ -1,0 +1,15 @@
+<table class="table table-dark table-striped">
+  <thead>
+    <th *ngFor="let key of keys">{{key}}</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td> <a [routerLink]="[employee.empno]">{{employee.empno}}</a></td>
+      <td>{{employee.name}}</td>
+      <td>{{employee.age}}</td>
+      <td>{{employee.salary}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>

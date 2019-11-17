@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-12">
+    <button (click)="oddEven()" >toggle</button>
+    <div *ngIf="odd">
+      <ul class="list-group" >
+        <li 
+          class="list-group-item" 
+          *ngFor="let n of oddNums" 
+          [ngClass]="{'makeRed': n%2!=0}"
+          [ngStyle]="{'color': n%2!=0 ? 'red': 'white'}" appHover>
+          {{n}}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!odd">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let n of evenNums">
+          {{n}}
+        </li>
+      </ul>
+    </div>
+    <!-- <ul [ngStyle]="{color: mycolor}" [ngSwitch]="mycolor"> -->
+      <!-- <li *ngSwitchCase=red>list1</li>
+qwkmdkmfwq,
+    </ul> -->
+  </div>
+</div>

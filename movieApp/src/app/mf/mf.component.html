@@ -1,0 +1,66 @@
+<div class="col-12">
+  <form [formGroup]="weatherForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" id="city" formControlName="city" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="cityid">City Id</label>
+      <input type="text" id="cityid" class="form-control">
+    </div>
+    <div class="form-group" formGroupName="latLong">
+      <label for="lat">Latitude</label>
+      <input type="text" id="lat" class="form-control" formControlName="lat">
+      <label for="long">Longitude</label>
+      <input 
+        type="text"
+        id="long"
+        class="form-control" 
+        formControlName="long"
+        [ngClass]="{'is-invalid': weatherForm.controls.latLong.controls.long.errors && weatherForm.controls.latLong.controls.long.touched}">
+    </div>
+    <div class="form-group" formGroupName="zip">
+      <label for="zipNumber">Zip number</label>
+      <input 
+        type="text" 
+        formControlName="zipNumber" 
+        class="form-control"
+        [ngClass]="{'is-invalid': weatherForm.controls.zip.controls.zipNumber.errors && weatherForm.controls.zip.controls.zipNumber.touched}"
+      >
+      <div class="invalid-feedback" *ngIf="weatherForm.controls.zip.controls.zipNumber.errors && weatherForm.controls.zip.controls.zipNumber.errors['Invalid Zip']">
+        Invalid Zip
+      </div>
+      <div class="invalid-feedback" *ngIf="weatherForm.controls.zip.controls.zipNumber.errors && weatherForm.controls.zip.controls.zipNumber.errors['required']">
+        Zip Number is required
+      </div>
+      <label for="country">Country</label>
+      <input 
+        type="text"
+        formControlName="country"
+        class="form-control"
+        [ngClass]="{'is-invalid': weatherForm.controls.zip.controls.country.errors && weatherForm.controls.zip.controls.country.touched }"> 
+    </div>
+    <div class="form-group" formGroupName="box">
+      <label for="lon-left">Longitude left</label>
+      <input type="text" id="lon-left" class="form-control" formControlName="lonLeft">
+      <label for="lon-right">Longitude Right</label>
+      <input type="text" id="lon-right" class="form-control" formCOntrolName="lonRight">
+      <label for="lat-left">Latitude Left</label>
+      <input type="text" id="lat-left" class="form-control" formControlName="latLeft">
+      <label for="lat-right">Latitude right</label>
+      <input type="text" class="form-control" id="lat-right" formControlName="latRight">
+    </div>
+    <div class="form-group" formGroupName="circle">
+      <label for="clat">Circle Latitude</label>
+      <input type="text" id="clat" class="form-control" formControlName="cLat">
+      <label for="clong">Circle Longitude</label>
+      <input type="text" class="form-control" formControlName="cLong">
+      <label for="circle">Circle</label>
+      <input type="text" id="circle" class="form-control" formControlName="circle">
+    </div>
+    <div class="form-group" *ngFor="let f of weatherForm.controls.people.controls;let i = index">
+      <input type="text" class="form-control" [formControl]=f>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+  </form>
+</div>
